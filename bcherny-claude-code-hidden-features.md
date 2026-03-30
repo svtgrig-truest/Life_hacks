@@ -1,4 +1,4 @@
-# 15 Hidden & Under-Utilized Features in Claude Code
+# 16 Hidden & Under-Utilized Features in Claude Code
 
 **Author:** Boris Cherny ([@bcherny](https://x.com/bcherny)), creator of Claude Code
 **Date:** March 30, 2026
@@ -163,3 +163,35 @@ Boris does most of his coding by speaking to Claude rather than typing.
 - In CLI: run `/voice`, then hold the space bar to speak
 - In Desktop: press the voice button
 - On iOS: enable dictation in settings
+
+---
+
+## [16. "if" Conditions in Hooks — Conditional Hook Execution](https://code.claude.com/docs/en/hooks)
+
+Add an `"if"` field to any hook handler to filter execution to specific commands. The hook only spawns a subprocess when both the matcher **and** the `if` condition match — saving significant time in long sessions.
+
+- `"if": "Bash(git *)"` — run only for git commands
+- `"if": "Edit(*.ts)"` — run only when editing TypeScript files
+- `"if": "Bash(rm *)"` — run only for rm commands
+- Works with: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Bash(git *)",
+            "command": ".claude/hooks/git-security-check.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+*Retweeted by Boris Cherny from @jarredsumner, March 27, 2026*

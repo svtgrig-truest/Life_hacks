@@ -67,3 +67,11 @@ Docs: https://code.claude.com/docs/en/sub-agents
 
 ## 15. /voice
 Boris dictates most of his code by voice. `/voice` in CLI → hold space to speak.
+
+## 16. "if" Conditions in Hooks
+The `"if"` field in a hook handler filters execution to specific commands/arguments.
+Syntax: `"if": "Bash(git *)"` — hook runs only for git commands.
+Works with: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PermissionRequest`.
+Saves time: no subprocess overhead for non-matching commands.
+Source: retweeted by @bcherny (original: @jarredsumner), March 27, 2026.
+Docs: https://code.claude.com/docs/en/hooks

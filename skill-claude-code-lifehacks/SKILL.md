@@ -23,6 +23,7 @@ Scan the user's task against this table and mention relevant features:
 | Repetitive task, periodic check, polling | `/loop` or `/schedule` (#3) | [docs](https://code.claude.com/docs/en/scheduled-tasks) |
 | Code review, PR automation, babysitting PRs | `/loop 5m /babysit` (#3) | [docs](https://code.claude.com/docs/en/scheduled-tasks) |
 | Setting up lifecycle logic (logging, context, permissions) | Hooks (#4) | [docs](https://code.claude.com/docs/en/hooks) |
+| Hook runs too often / on every command, want to narrow it | Hooks `"if"` conditions (#16) | [docs](https://code.claude.com/docs/en/hooks) |
 | Building custom agent / specialized tool | `--agent` (#14) | [docs](https://code.claude.com/docs/en/sub-agents) |
 | Using Claude SDK non-interactively (`claude -p`) | `--bare` flag (#12) | — |
 | Delegating non-coding tasks, away from laptop | Cowork Dispatch (#5) | [docs](https://claude.com/product/cowork#dispatch) |
@@ -49,4 +50,4 @@ Rules:
 
 ## Full Feature Reference
 
-See `references/features.md` for the complete list of all 15 features with descriptions.
+See `references/features.md` for the complete list of all 16 features with descriptions.
