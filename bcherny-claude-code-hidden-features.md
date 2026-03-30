@@ -1,129 +1,129 @@
-# 15 скрытых и недооценённых функций Claude Code
+# 15 Hidden & Under-Utilized Features in Claude Code
 
-**Автор:** Boris Cherny ([@bcherny](https://x.com/bcherny)), создатель Claude Code
-**Дата:** 30 марта 2026
-**Источник:** [X (Twitter)](https://x.com/bcherny/status/2038454336355999749)
-
----
-
-## 1. Мобильное приложение Claude Code
-
-Claude Code есть в мобильном приложении. Boris часто пишет код прямо с iPhone, не открывая ноутбук.
-
-- Скачать приложение Claude для iOS/Android
-- Перейти на вкладку **Code** слева
-- Ревьювить изменения, апрувить PR и писать код с телефона
+**Author:** Boris Cherny ([@bcherny](https://x.com/bcherny)), creator of Claude Code
+**Date:** March 30, 2026
+**Source:** [X (Twitter)](https://x.com/bcherny/status/2038454336355999749)
 
 ---
 
-## [2. Переброска сессий между мобилкой, вебом и терминалом](https://code.claude.com/docs/en/remote-control)
+## 1. Mobile App
 
-Используй `claude --teleport` или `/teleport`, чтобы продолжить облачную сессию локально. Или `/remote-control`, чтобы управлять локальной сессией с телефона или браузера.
+Claude Code has a mobile app. Boris writes a lot of his code from the iOS app — a convenient way to make changes without opening a laptop.
 
-- **Teleport** — тянет облачную сессию в локальный терминал
-- **Remote Control** — позволяет управлять локальной сессией с любого устройства
-- Boris включил «Enable Remote Control for all sessions» в своём `/config`
-
----
-
-## [3. /loop и /schedule — две самые мощные фичи](https://code.claude.com/docs/en/scheduled-tasks)
-
-Запускай Claude автоматически по расписанию — на срок до недели. Boris держит несколько лупов:
-
-- `/loop 5m /babysit` — автоматически отвечает на code review, делает rebase и доводит PR до прода
-- `/loop 30m /slack-feedback` — каждые 30 минут создаёт PR по фидбеку из Slack
-- `/loop /post-merge-sweeper` — создаёт PR для решения пропущенных комментариев из code review
-- `/loop 1h /pr-pruner` — закрывает устаревшие и ненужные PR
-
-Совет: превращай свои воркфлоу в skills и комбинируй их с loops.
+- Download the Claude app for iOS/Android
+- Navigate to the **Code** tab on the left
+- Review changes, approve PRs, and write code directly from your phone
 
 ---
 
-## [4. Хуки для детерминированной логики](https://code.claude.com/docs/en/hooks)
+## [2. Move Sessions Between Mobile/Web/Desktop and Terminal](https://code.claude.com/docs/en/remote-control)
 
-Хуки запускают логику в рамках жизненного цикла агента:
+Run `claude --teleport` or `/teleport` to continue a cloud session locally. Or run `/remote-control` to control a locally running session from your phone or browser.
 
-- **Динамически загружать контекст** при каждом старте Claude (`SessionStart`)
-- **Логировать каждую bash-команду** модели (`PreToolUse`)
-- **Роутить запросы на разрешения** в WhatsApp для апрува/дения (`PermissionRequest`)
-- **Подталкивать Claude** продолжать, когда он останавливается (`Stop`)
+- **Teleport** — pulls a cloud session down to your local terminal
+- **Remote Control** — lets you control a local session from any device
+- Boris has "Enable Remote Control for all sessions" set in his `/config`
+
+---
+
+## [3. /loop and /schedule — Two of the Most Powerful Features](https://code.claude.com/docs/en/scheduled-tasks)
+
+Schedule Claude to run automatically at a set interval for up to a week. Boris runs multiple loops locally:
+
+- `/loop 5m /babysit` — auto-address code review, auto-rebase, and shepherd PRs to production
+- `/loop 30m /slack-feedback` — automatically put up PRs for Slack feedback every 30 minutes
+- `/loop /post-merge-sweeper` — put up PRs to address missed code review comments
+- `/loop 1h /pr-pruner` — close out stale and unnecessary PRs
+
+Tip: turn your workflows into skills and combine them with loops.
+
+---
+
+## [4. Hooks for Deterministic Logic](https://code.claude.com/docs/en/hooks)
+
+Hooks run logic as part of the agent lifecycle:
+
+- **Dynamically load context** each time you start Claude (`SessionStart`)
+- **Log every bash command** the model runs (`PreToolUse`)
+- **Route permission prompts** to WhatsApp for you to approve/deny (`PermissionRequest`)
+- **Poke Claude** to keep going whenever it stops (`Stop`)
 
 ---
 
 ## [5. Cowork Dispatch](https://claude.com/product/cowork#dispatch)
 
-Boris использует Dispatch каждый день: догоняет Slack и почту, управляет файлами и задачами на ноутбуке удалённо.
+Boris uses Dispatch every day to catch up on Slack and emails, manage files, and do things on his laptop when he's not at a computer.
 
-- Dispatch — безопасное удалённое управление приложением Claude Desktop
-- Использует твои MCP, браузер и компьютер с разрешения
-- Делегируй некодинговые задачи Клоду из любого места
-
----
-
-## [6. Chrome-расширение для фронтенд-разработки](https://code.claude.com/docs/en/chrome)
-
-**Ключевой принцип:** дай Claude возможность видеть результат своей работы. Когда он видит, что получилось — итерирует до отличного результата.
-
-- Без браузера результаты по написанию сайтов скорее всего будут так себе
-- С браузером Claude пишет код и итерирует, пока не доволен
-- Boris использует Chrome-расширение для всего веб-кода — оно лучше аналогичных MCP
+- Dispatch is a **secure remote control** for the Claude Desktop app
+- It can use your MCPs, browser, and computer, with your permission
+- Delegate non-coding tasks to Claude from anywhere
 
 ---
 
-## [7. Desktop-приложение для автозапуска и тестирования веб-серверов](https://code.claude.com/docs/en/desktop#preview-your-app)
+## [6. Chrome Extension for Frontend Work](https://code.claude.com/docs/en/chrome)
 
-Desktop-приложение позволяет Claude автоматически запустить твой веб-сервер и протестировать его во встроенном браузере.
+**Key principle:** give Claude a way to verify its output. Once you do that, Claude will iterate until the result is great.
 
-- Аналогично настраивается в CLI или VSCode через Chrome-расширение
-- Или используй Desktop-приложение для интегрированного опыта
-
----
-
-## 8. Форк сессии
-
-Два способа разветвить существующую сессию:
-
-1. Выполни `/branch` внутри сессии
-2. Из CLI: `claude --resume <session-id> --fork-session`
-
-`/branch` создаёт ветку разговора. Вернуться к оригиналу: `claude -r <original-session-id>`.
+- Without a browser, website-building results likely won't look good
+- With a browser, Claude writes code and iterates until it looks good
+- Boris uses the Chrome extension every time he works on web code — it outperforms similar MCPs
 
 ---
 
-## 9. /btw — боковые вопросы без прерывания агента
+## [7. Desktop App to Auto-Start and Test Web Servers](https://code.claude.com/docs/en/desktop#preview-your-app)
 
-Команда `/btw` позволяет задать попутный вопрос, пока агент работает, не прерывая его.
+The Desktop app bundles in the ability for Claude to automatically run your web server and test it in a built-in browser.
 
-Пример: `/btw как пишется dachshund?` — получишь немедленный ответ, работа продолжится.
+- Set up something similar in CLI or VSCode using the Chrome extension
+- Or use the Desktop app for the integrated experience
+
+---
+
+## 8. Fork Your Session
+
+Two ways to branch an existing session:
+
+1. Run `/branch` from your session
+2. From CLI: `claude --resume <session-id> --fork-session`
+
+`/branch` creates a branched conversation. Resume the original with `claude -r <original-session-id>`.
+
+---
+
+## 9. /btw — Side Queries Without Interrupting the Agent
+
+The `/btw` command lets you ask a side question while the agent works without interrupting its current task.
+
+Example: `/btw how do I spell dachshund?` — you get an immediate answer and work continues.
 
 ---
 
 ## 10. Git Worktrees
 
-Claude Code глубоко поддерживает git worktrees — это основа для параллельной работы в одном репозитории. Boris запускает десятки инстансов Claude одновременно.
+Claude Code has deep git worktree support — essential for parallel work in the same repository. Boris runs dozens of Claude instances simultaneously.
 
-- `claude -w` — стартуй новую сессию в worktree
-- Включи чекбокс «worktree» в Claude Desktop
-- Для не-git VCS: используй хук `WorktreeCreate` для кастомной логики
-
----
-
-## 11. /batch — параллельный запуск масштабных изменений
-
-Команда `/batch` проводит интервью с тобой, потом раздаёт работу десяткам, сотням или тысячам агентов в worktrees одновременно.
-
-- Идеально для крупных миграций кода и параллелизуемых задач
-- Каждый агент работает независимо со своей копией кодовой базы
+- `claude -w` — start a new session in a worktree
+- Check the "worktree" checkbox in Claude Desktop
+- For non-git VCS: use the `WorktreeCreate` hook for custom logic
 
 ---
 
-## 12. --bare — ускорение старта SDK до 10x
+## 11. /batch — Fan Out Massive Changesets
 
-По умолчанию `claude -p` ищет локальные CLAUDE.md, настройки и MCP. Для неинтерактивного использования явно указывай, что загружать.
+`/batch` interviews you, then fans out work to dozens, hundreds, or even thousands of worktree agents simultaneously.
 
-- Это был изначальный просчёт в дизайне
-- В будущих версиях `--bare` станет поведением по умолчанию
-- Сейчас включай флаг вручную — ускоряет старт до 10x
+- Ideal for large code migrations and parallelizable work
+- Each agent works independently on its own copy of the codebase
+
+---
+
+## 12. --bare — Speed Up SDK Startup by Up to 10x
+
+By default, `claude -p` searches for local CLAUDE.md files, settings, and MCPs. For non-interactive use, explicitly specify what to load.
+
+- This was a design oversight when the SDK was first built
+- A future version will flip the default to `--bare`
+- Opt in now for up to **10x faster startup**
 
 ```bash
 claude -p "summarize this codebase" \
@@ -134,32 +134,32 @@ claude -p "summarize this codebase" \
 
 ---
 
-## [13. --add-dir — доступ к дополнительным папкам](https://code.claude.com/docs/en/cli-reference)
+## [13. --add-dir — Give Claude Access to More Folders](https://code.claude.com/docs/en/cli-reference)
 
-При работе в нескольких репозиториях запусти Claude в одном репо и добавь доступ к другим через `--add-dir` (или `/add-dir`).
+When working across multiple repositories, start Claude in one repo and use `--add-dir` (or `/add-dir`) to let Claude see the others.
 
-- Указывает Claude на репо и даёт разрешение работать с ним
-- Добавь `"additionalDirectories"` в командный `settings.json`, чтобы загружать папки всегда
+- Tells Claude about the repo and gives it permissions to work there
+- Add `"additionalDirectories"` to your team's `settings.json` to always load additional folders
 
 ---
 
-## [14. --agent — кастомный системный промпт и инструменты](https://code.claude.com/docs/en/sub-agents)
+## [14. --agent — Custom System Prompt & Tools](https://code.claude.com/docs/en/sub-agents)
 
-Описывай кастомных агентов в `.claude/agents/`, затем запускай:
+Define custom agents in `.claude/agents/`, then run:
 
 ```bash
-claude --agent=<имя агента>
+claude --agent=<your agent's name>
 ```
 
-- Агенты поддерживают ограниченный набор инструментов, кастомные описания и конкретные модели
-- Отлично подходит для read-only агентов, специализированных ревьюеров, доменных инструментов
+- Agents can have restricted tools, custom descriptions, and specific models
+- Great for read-only agents, specialized review agents, or domain-specific tools
 
 ---
 
-## 15. /voice — голосовой ввод
+## 15. /voice — Voice Input
 
-Boris делает большую часть кодинга голосом, а не печатью.
+Boris does most of his coding by speaking to Claude rather than typing.
 
-- В CLI: запусти `/voice`, затем зажимай пробел для записи голоса
-- В Desktop: нажми кнопку голоса
-- На iOS: включи диктовку в настройках
+- In CLI: run `/voice`, then hold the space bar to speak
+- In Desktop: press the voice button
+- On iOS: enable dictation in settings
